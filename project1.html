@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HKT Project Detail Page</title>
     <style>
-        /* RESET & BASE */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; color: #333; }
+  /* CSS VARIABLES & RESET (SAME AS HOME) */
+        :root {
+            --primary-color: #0b2545; --accent-color: #c5a059;
+            --text-dark: #1a1a1a; --text-grey: #666; --bg-light: #f9f9f9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { color: var(--text-dark); line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .btn { padding: 15px 30px; background: #003366; color: #fff; border: none; font-weight: bold; text-transform: uppercase; cursor: pointer; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         
+        /* HEADER (Consistent) */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
+        .logo span { color: var(--accent-color); }
+        .nav-links a { margin-left: 25px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; color: var(--primary-color); }
+        .nav-links a:hover { color: var(--accent-color); }
+      
         /* PROJECT HERO */
         .p-hero { height: 70vh; background: #ccc; position: relative; display: flex; align-items: flex-end; }
         .p-hero-content { background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); width: 100%; padding: 40px; color: #fff; }
@@ -53,10 +65,12 @@
         <div class="container nav-flex">
             <div class="logo">HKT <span>GROUP</span></div>
             <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about1.html">About</a>
-                <a href="cap1.html">Capabilities</a>
-                <a href="project1.html" style="color: #c5a059;">Projects</a>
+                <a href="/index.html">Home</a>
+                <a href="/about1.html">About</a>
+                <a href="/projectlist1.html">Projects</a>
+                <!-- <a href="/project1.html" style="color: var(--accent-color);">Projects</a> -->
+                <!-- <a href="/partnerships.html">Partnerships</a> -->
+                <a href="contact.html">Contact</a>
             </nav>
         </div>
     </header>
