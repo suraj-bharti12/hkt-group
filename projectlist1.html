@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | HKT Group</title>
+    <style>
+        /* CSS VARIABLES & RESET */
+        :root {
+            --primary-color: #0b2545; --accent-color: #c5a059;
+            --text-dark: #1a1a1a; --bg-light: #f9f9f9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* HEADER */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
+        .logo span { color: var(--accent-color); }
+        .nav-links a { margin-left: 25px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; color: var(--primary-color); }
+
+        /* HERO */
+        .page-hero {
+            background: linear-gradient(rgba(11, 37, 69, 0.8), rgba(11, 37, 69, 0.8)), url('https://images.unsplash.com/photo-1460317442991-00aaced995ce?q=80&w=2071&auto=format&fit=crop');
+            background-size: cover; height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+        }
+
+        /* FILTERS  */
+        .filter-bar { padding: 40px 0; text-align: center; }
+        .filter-btn {
+            background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);
+            padding: 10px 25px; margin: 0 5px; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary-color); color: white; }
+
+        /* PROJECT GRID  */
+        .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding-bottom: 80px; }
+        .project-item { border: 1px solid #eee; background: white; transition: 0.3s; cursor: pointer; }
+        .project-item:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
+        
+        .p-thumb { height: 250px; background: #ddd; position: relative; overflow: hidden; }
+        .p-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .p-badge { position: absolute; top: 15px; left: 15px; background: var(--accent-color); color: white; padding: 5px 10px; font-size: 0.8rem; text-transform: uppercase; font-weight: bold; }
+        
+        .p-details { padding: 25px; }
+        .p-title { font-size: 1.2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 5px; }
+        .p-loc { color: #666; font-size: 0.9rem; margin-bottom: 15px; }
+        .p-btn { display: inline-block; color: var(--accent-color); font-weight: bold; font-size: 0.9rem; }
+
+        /* JS for Filtering */
+        .hide { display: none; }
+
+        footer { background: #111; color: #999; padding: 50px 0; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">HKT <span>GROUP</span></div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="capabilities.html">Capabilities</a>
+                <a href="projects.html" style="color: var(--accent-color);">Projects</a>
+                <a href="partnerships.html">Partnerships</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <h1>Our Portfolio</h1>
+    </div>
+
+    <div class="container">
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+            <button class="filter-btn" onclick="filterProjects('residential')">Residential</button>
+            <button class="filter-btn" onclick="filterProjects('commercial')">Commercial</button>
+            <button class="filter-btn" onclick="filterProjects('township')">Townships</button>
+        </div>
+
+        <div class="project-grid">
+            
+            <div class="project-item" data-category="residential">
+                <div class="p-thumb">
+                    <span class="p-badge">Residential</span>
+                    <img src="https://images.unsplash.com/photo-1600596542815-e32c12e32d34?q=80&w=1000&auto=format&fit=crop" alt="Villa">
+                </div>
+                <div class="p-details">
+                    <div class="p-title">HKT Grand Villas</div>
+                    <div class="p-loc">Gurugram, Haryana</div>
+                    <a href="project-detail.html" class="p-btn">View Details &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-item" data-category="commercial">
+                <div class="p-thumb">
+                    <span class="p-badge">Commercial</span>
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" alt="Office">
+                </div>
+                <div class="p-details">
+                    <div class="p-title">Cyber Park One</div>
+                    <div class="p-loc">New Delhi</div>
+                    <a href="project-detail.html" class="p-btn">View Details &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-item" data-category="township">
+                <div class="p-thumb">
+                    <span class="p-badge">Township</span>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Township">
+                </div>
+                <div class="p-details">
+                    <div class="p-title">HKT Green City</div>
+                    <div class="p-loc">Noida Extension</div>
+                    <a href="project-detail.html" class="p-btn">View Details &rarr;</a>
+                </div>
+            </div>
+
+             <div class="project-item" data-category="residential">
+                <div class="p-thumb">
+                    <span class="p-badge">Residential</span>
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop" alt="Condo">
+                </div>
+                <div class="p-details">
+                    <div class="p-title">The Heights</div>
+                    <div class="p-loc">Chandigarh</div>
+                    <a href="project-detail.html" class="p-btn">View Details &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2025 HKT Group.
+        </div>
+    </footer>
+
+    <script>
+        function filterProjects(cat) {
+            let items = document.querySelectorAll('.project-item');
+            let btns = document.querySelectorAll('.filter-btn');
+            
+            // Toggle Buttons
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Toggle Items
+            items.forEach(item => {
+                if (cat === 'all' || item.getAttribute('data-category') === cat) {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

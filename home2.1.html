@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKT Group | Developing Urban Spaces</title>
+    <style>
+        /* =========================================
+           CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            /* CHANGED: Colour scheme updated to Brown and Gold based on logo */
+            --primary-color: #4a2522; /* Deep Brown/Burgundy from logo border */
+            --accent-color: #cfa046;  /* Gold from the 'T' symbol */
+            
+            --text-dark: #2a2a2a;
+            --text-light: #fdfdfd;
+            --text-grey: #666666;
+            --bg-light: #ffffff;
+            --bg-off-white: #faf9f6; /* Slightly warmer off-white to match brown theme */
+            --transition: all 0.3s ease;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* CHANGED: Font updated to Garamond/Georgia (Serif) */
+            font-family: 'Garamond', 'Georgia', 'Times New Roman', serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: var(--bg-light);
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* =========================================
+           UTILITIES
+           ========================================= */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section { padding: 80px 0; }
+        .bg-light { background-color: var(--bg-off-white); }
+        .bg-dark { background-color: var(--primary-color); color: var(--text-light); }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem; /* Slightly larger for Serif fonts */
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-weight: normal; /* Serifs often look better with normal weight headers */
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        .section-header p {
+            color: var(--text-grey);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 0; /* Sharp corners match the logo box */
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-gold {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-gold:hover {
+            background: #b08635; /* Darker gold on hover */
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        .top-bar {
+            background: #2a1513; /* Very dark brown */
+            color: rgba(255,255,255,0.8);
+            padding: 10px 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px; /* Increased height slightly for logo image */
+        }
+
+        /* CHANGED: Logo styling to accommodate image */
+        .logo-img {
+            height: 70px; 
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-color); }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            height: 85vh;
+            /* Overlay color adjusted to brown tint */
+            background: linear-gradient(rgba(74, 37, 34, 0.7), rgba(74, 37, 34, 0.5)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            font-weight: normal; /* Classic serif elegant look */
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            font-style: italic; /* Adding italic for elegance */
+        }
+
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; }
+
+        /* =========================================
+           ABOUT SECTION
+           ========================================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img img {
+            border-radius: 2px;
+            box-shadow: 0 20px 40px rgba(74, 37, 34, 0.15); /* Brown shadow */
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: var(--accent-color);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 2px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .experience-badge h3 { font-size: 2.8rem; line-height: 1; margin-bottom: 5px; font-weight: normal; }
+
+        /* =========================================
+           CAPABILITIES
+           ========================================= */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .cap-card {
+            background: white;
+            padding: 40px 30px;
+            border-bottom: 4px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .cap-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .cap-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .cap-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .cap-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-grey);
+            font-size: 1rem;
+        }
+
+        .cap-list li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* =========================================
+           PROJECTS SLIDER
+           ========================================= */
+        .projects-wrapper {
+            overflow-x: auto;
+            display: flex;
+            gap: 20px;
+            padding-bottom: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) #eee;
+        }
+
+        .project-card {
+            min-width: 350px;
+            height: 450px;
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img { transform: scale(1.1); }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(74, 37, 34, 0.95), transparent); /* Brown gradient */
+            padding: 30px;
+            color: white;
+        }
+
+        .project-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* =========================================
+           PARTNERSHIPS STRIP
+           ========================================= */
+        .partnerships {
+            background: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnerships::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.05;
+        }
+
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .partner-col {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .partner-col:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-color); }
+
+        .partner-col h3 { font-weight: normal; font-size: 1.5rem; }
+
+        /* =========================================
+           BUYER'S CORNER
+           ========================================= */
+        .buyers-box {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 6px solid var(--accent-color);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background: #2a1513; /* Very dark brown matches Top Bar */
+            color: #d0d0d0;
+            padding-top: 70px;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-col h4 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 5px; }
+
+        .footer-bottom {
+            padding: 25px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        /* Footer logo sizing */
+        .footer-logo-img {
+            height: 90px;
+            width: auto;
+            margin-bottom: 20px;
+            /* Invert filter to make logo legible on dark background if transparent PNG, 
+               otherwise remove filter if logo has white background built-in.
+               Assuming logo has white background from file provided, we might need a container. */
+            background: white;
+            padding: 10px;
+            border-radius: 2px;
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+        @media (max-width: 968px) {
+            .hero-content h1 { font-size: 3rem; }
+            .about-grid, .partnership-grid, .footer-grid, .buyers-box { grid-template-columns: 1fr; }
+            .buyers-box { text-align: center; flex-direction: column; gap: 20px; }
+            .experience-badge { display: none; }
+            .about-img { margin-bottom: 40px; }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-phone"></i> +91 11 4248 2666 | info@hktgroup.in</span>
+            <span>HKT Centre, New Delhi</span>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#">
+                    <img src="HKT-Group-Logo-5000x5000px.png" alt="HKT Group" class="logo-img">
+                </a>
+                
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#">About HKT</a>
+                    <a href="#">Capabilities</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Partnerships</a>
+                    <a href="#">Buyer's Corner</a>
+                    <a href="#">Media</a>
+                    <a href="#" class="btn" style="padding: 8px 20px; font-size: 0.8rem;">Contact Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Building a Better Tomorrow</h1>
+            <p>From premium villas to sustainable townships, we have been crafting the skyline of Delhi-NCR since 1987.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-gold">View Our Projects</a>
+                <a href="#partnerships" class="btn btn-outline">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container about-grid">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1481253127861-534498168948?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80" alt="HKT Building">
+                <div class="experience-badge">
+                    <h3>37+</h3>
+                    <span>Years of<br>Excellence</span>
+                </div>
+            </div>
+            <div class="about-text">
+                <h4 style="color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Who We Are</h4>
+                <h2 style="font-size: 2.8rem; color: var(--primary-color); margin-bottom: 20px; line-height: 1.2;">Translating Visions into Reality Since 1987</h2>
+                <p style="margin-bottom: 20px; color: var(--text-grey);">
+                    HKT Group has earned its reputation as a leading Real Estate Developer in and around Delhi-NCR. We pride ourselves on developing smart, high-tech buildings, always with a sustainable footprint.
+                </p>
+                <p style="margin-bottom: 30px; color: var(--text-grey);">
+                    Working with a strong team of industry professionals, we have a proven track record in unlocking value in sites and building communities that thrive.
+                </p>
+                <a href="#" class="btn">Read Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Capabilities</h2>
+                <p>We deliver end-to-end real estate solutions across multiple sectors.</p>
+            </div>
+
+            <div class="capabilities-grid">
+                <div class="cap-card">
+                    <div class="cap-icon">🏠</div>
+                    <h3>Residential</h3>
+                    <ul class="cap-list">
+                        <li><strong>Villas:</strong> Design & build premium homes.</li>
+                        <li><strong>Independent Floors:</strong> Low-rise dwellings.</li>
+                        <li><strong>Group Housing:</strong> Apartments & condos.</li>
+                        <li><strong>Green Construction:</strong> Eco-friendly materials.</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-icon">🏢</div>
+                    <h3>Commercial</h3>
+                    <ul class="cap-list">
+                        <li><strong>Offices:</strong> Corporate complexes & SCOs.</li>
+                        <li><strong>Retail:</strong> Malls & shopping centers.</li>
+                        <li><strong>Industrial:</strong> Warehousing & logicstics.</li>
+                        <li><strong>Hospitality:</strong> Hotels & resorts.</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-icon">🏙️</div>
+                    <h3>Townships</h3>
+                    <ul class="cap-list">
+                        <li><strong>Integrated:</strong> Mixed-use developments.</li>
+                        <li><strong>Affordable Housing:</strong> Quality living for all.</li>
+                        <li><strong>Thematic:</strong> Community-focused living.</li>
+                        <li><strong>Workspaces:</strong> Co-working hubs.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p>A glimpse into our portfolio of excellence.</p>
+            </div>
+            
+            <div class="projects-wrapper">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1600596542815-e32c12e32d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Project 1">
+                    <div class="project-overlay">
+                        <span class="project-tag">Residential</span>
+                        <h3>HKT Grand Villas</h3>
+                        <p>Gurugram, Haryana</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Project 2">
+                    <div class="project-overlay">
+                        <span class="project-tag">Commercial</span>
+                        <h3>Cyber Park One</h3>
+                        <p>New Delhi</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Project 3">
+                    <div class="project-overlay">
+                        <span class="project-tag">Hospitality</span>
+                        <h3>The HKT Resort</h3>
+                        <p>Manali</p>
+                    </div>
+                </div>
+
+                 <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Project 4">
+                    <div class="project-overlay">
+                        <span class="project-tag">Industrial</span>
+                        <h3>Logistics Hub</h3>
+                        <p>Noida Expressway</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color);">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section partnerships" id="partnerships">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Partnerships</h2>
+                <p style="color: rgba(255,255,255,0.8);">Unlock maximum value from your assets.</p>
+            </div>
+
+            <div class="partnership-grid">
+                <div class="partner-col">
+                    <h3 style="margin-bottom: 15px;">Landowner Collaborations</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">We partner with landowners to develop premium assets through Joint Development Agreements.</p>
+                    <a href="#" style="text-decoration: underline; color: var(--accent-color);">Learn More</a>
+                </div>
+                <div class="partner-col">
+                    <h3 style="margin-bottom: 15px;">Joint Ventures</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">Strategic alliances for large-scale township and commercial execution.</p>
+                    <a href="#" style="text-decoration: underline; color: var(--accent-color);">Learn More</a>
+                </div>
+                <div class="partner-col">
+                    <h3 style="margin-bottom: 15px;">Investor Relations</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">Secure high-yield opportunities in emerging real estate markets with HKT.</p>
+                    <a href="#" style="text-decoration: underline; color: var(--accent-color);">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="buyers-box">
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--primary-color);">First Time Home Buyer?</h3>
+                    <p>Check out our comprehensive Buying Guide and FAQs to make an informed decision.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn">Visit Buyer's Corner</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="HKT-Group-Logo-5000x5000px.png" alt="HKT Group" class="footer-logo-img">
+                    
+                    <p>HKT Centre, 5, Ground Floor,<br>Pusa Road, New Delhi 110005</p>
+                    <br>
+                    <p><strong>T:</strong> +91 (0) 11 4248 2666</p>
+                    <p><strong>E:</strong> info@hktgroup.in</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="#">Why HKT</a></li>
+                        <li><a href="#">The Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="#">Residential</a></li>
+                        <li><a href="#">Commercial</a></li>
+                        <li><a href="#">Townships</a></li>
+                        <li><a href="#">Upcoming</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Buyer's Guide</a></li>
+                        <li><a href="#">Media & News</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 HKT Group. All Rights Reserved. Building Legacies.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)";
+            } else {
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.05)";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capabilities | HKT Group</title>
+    <style>
+        /* CSS VARIABLES & RESET */
+        :root {
+            --primary-color: #0b2545; --accent-color: #c5a059;
+            --text-dark: #1a1a1a; --bg-light: #f9f9f9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* HEADER */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
+        .logo span { color: var(--accent-color); }
+        .nav-links a { margin-left: 25px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; color: var(--primary-color); }
+        
+        /* PAGE HERO */
+        .page-hero {
+            background: linear-gradient(rgba(11, 37, 69, 0.9), rgba(11, 37, 69, 0.8)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2031&auto=format&fit=crop');
+            background-size: cover; height: 350px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+        }
+
+        /* CAPABILITY BLOCKS [cite: 6-27] */
+        .cap-block { padding: 80px 0; border-bottom: 1px solid #eee; }
+        .cap-block:nth-child(even) { background: var(--bg-light); }
+        
+        .cap-header { text-align: center; margin-bottom: 50px; }
+        .cap-header h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
+        .cap-header p { max-width: 600px; margin: 0 auto; color: #666; }
+
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .service-card { background: white; padding: 30px; border: 1px solid #eee; transition: 0.3s; height: 100%; }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .s-icon { font-size: 2rem; color: var(--accent-color); margin-bottom: 15px; }
+        .s-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; color: var(--primary-color); }
+        .s-desc { font-size: 0.9rem; color: #666; }
+
+        footer { background: #111; color: #999; padding: 50px 0; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">HKT <span>GROUP</span></div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="capabilities.html" style="color: var(--accent-color);">Capabilities</a>
+                <a href="projects.html">Projects</a>
+                <a href="partnerships.html">Partnerships</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div>
+            <h1>Our Capabilities</h1>
+            <p>End-to-end development expertise.</p>
+        </div>
+    </div>
+
+    <section class="cap-block">
+        <div class="container">
+            <div class="cap-header">
+                <h2>Residential</h2>
+                <p>Creating homes that blend luxury with functionality.</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="s-icon">🏡</div>
+                    <div class="s-title">Villas</div>
+                    <div class="s-desc">Design and build premium villas for the discerning, design-oriented homeowner. [cite: 8]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🏢</div>
+                    <div class="s-title">Group Housing</div>
+                    <div class="s-desc">Construct apartment buildings, towers, and condominiums for large residential communities. [cite: 10, 11]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🧱</div>
+                    <div class="s-title">Independent Floors</div>
+                    <div class="s-desc">Low-rise buildings and townhouses designed for privacy and space. [cite: 9]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🌿</div>
+                    <div class="s-title">Green Construction</div>
+                    <div class="s-desc">Incorporate sustainable building codes and eco-friendly materials. [cite: 12]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🤝</div>
+                    <div class="s-title">Community Living</div>
+                    <div class="s-desc">Thematic housing designed to foster strong community bonds. [cite: 14]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cap-block">
+        <div class="container">
+            <div class="cap-header">
+                <h2>Commercial</h2>
+                <p>Spaces designed for business growth and efficiency.</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="s-icon">💼</div>
+                    <div class="s-title">Offices</div>
+                    <div class="s-desc">Corporate offices, commercial complexes, SCOs, and business parks. [cite: 16]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🛍️</div>
+                    <div class="s-title">Retail Spaces</div>
+                    <div class="s-desc">Shopping centers and malls focused on patron experience and aesthetics. [cite: 17]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🏭</div>
+                    <div class="s-title">Industrial</div>
+                    <div class="s-desc">Warehouses and manufacturing facilities emphasizing efficiency and safety. [cite: 18]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🏨</div>
+                    <div class="s-title">Hospitality</div>
+                    <div class="s-desc">Build and operate hotels and resorts with premium specifications. [cite: 19]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">💻</div>
+                    <div class="s-title">Workspaces</div>
+                    <div class="s-desc">Shared co-working spaces that foster community. [cite: 20, 21]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cap-block">
+        <div class="container">
+            <div class="cap-header">
+                <h2>Townships</h2>
+                <p>Large-scale integrated developments.</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="s-icon">🏘️</div>
+                    <div class="s-title">Affordable Housing</div>
+                    <div class="s-desc">Quality housing accessible to broader demographics. [cite: 24]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🌆</div>
+                    <div class="s-title">Integrated / Mixed-Use</div>
+                    <div class="s-desc">Developments combining residential, commercial, and retail zones. [cite: 26]</div>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">🎨</div>
+                    <div class="s-title">Thematic Townships</div>
+                    <div class="s-desc">Concept-driven living environments. [cite: 27]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            &copy; 2025 HKT Group.
+        </div>
+    </footer>
+
+</body>
+</html>
